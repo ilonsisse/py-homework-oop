@@ -8,6 +8,9 @@ class Student:
         self.courses_in_progress = []
         self.grades = {}
 
+    def student_rate(self, lecturer, grade):
+        pass
+
 
 class Mentor:
 
@@ -18,7 +21,14 @@ class Mentor:
 
 
 class Lecturer(Mentor):
-    pass
+
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+        self.courses_attached = []
+        self.grades = {}
+
+
+
 
 
 class Reviewer(Mentor):
