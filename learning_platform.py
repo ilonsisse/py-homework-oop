@@ -8,8 +8,17 @@ class Student:
         self.courses_in_progress = []
         self.grades = {}
 
-    def student_rate(self, lecturer, grade):
-        pass
+    def student_rate(self, lecturer, course, grade):
+        if (isinstance(lecturer, Lecturer)
+                and self.courses_in_progress in lecturer.courses_attached
+                and course in self.courses_in_progress
+                and grade <= 10):
+            if course in lecturer.grades:
+                lecturer.grades[course] += [grade]
+            else:
+                lecturer.grades[course] = [grade]
+        else:
+            return 'Ошибка'
 
 
 class Mentor:
@@ -28,12 +37,9 @@ class Lecturer(Mentor):
         self.grades = {}
 
 
-
-
-
 class Reviewer(Mentor):
 
-    def rate(self, student, course, grade):
+    def reviewer_rate(self, student, course, grade):
         if (isinstance(student, Student)
                 and course in self.courses_attached
                 and course in student.courses_in_progress):
@@ -43,4 +49,5 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+
 
