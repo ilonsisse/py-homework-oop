@@ -27,6 +27,24 @@ class Student:
                 f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)} '
                 f'Завершенные курсы: {", ".join(self.finished_courses)} ')
 
+    def __lt__(self, other):
+        return sum(self.grades) / len(self.grades) < sum(other.grades) / len(other.grades)
+
+    def __le__(self, other):
+        return sum(self.grades) / len(self.grades) <= sum(other.grades) / len(other.grades)
+
+    def __eq__(self, other):
+        return sum(self.grades) / len(self.grades) == sum(other.grades) / len(other.grades)
+
+    def __ne__(self, other):
+        return sum(self.grades) / len(self.grades) != sum(other.grades) / len(other.grades)
+
+    def __gt__(self, other):
+        return sum(self.grades) / len(self.grades) > sum(other.grades) / len(other.grades)
+
+    def __ge__(self, other):
+        return sum(self.grades) / len(self.grades) >= sum(other.grades) / len(other.grades)
+
 
 class Mentor:
 
@@ -47,6 +65,24 @@ class Lecturer(Mentor):
         return (f'Имя: {self.name} '
                 f'Фамилия: {self.surname}'
                 f'Средняя оценка за лекции: {sum(self.grades) / len(self.grades)}')
+
+    def __lt__(self, other):
+        return sum(self.grades) / len(self.grades) < sum(other.grades) / len(other.grades)
+
+    def __le__(self, other):
+        return sum(self.grades) / len(self.grades) <= sum(other.grades) / len(other.grades)
+
+    def __eq__(self, other):
+        return sum(self.grades) / len(self.grades) == sum(other.grades) / len(other.grades)
+
+    def __ne__(self, other):
+        return sum(self.grades) / len(self.grades) != sum(other.grades) / len(other.grades)
+
+    def __gt__(self, other):
+        return sum(self.grades) / len(self.grades) > sum(other.grades) / len(other.grades)
+
+    def __ge__(self, other):
+        return sum(self.grades) / len(self.grades) >= sum(other.grades) / len(other.grades)
 
 
 class Reviewer(Mentor):
