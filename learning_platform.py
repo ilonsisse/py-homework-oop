@@ -103,9 +103,18 @@ class Reviewer(Mentor):
                 f'Фамилия: {self.surname}')
 
 
+student_1 = Student('Евгений', 'Истомин', 'м')
+student_2 = Student('Иван', 'Иванов', 'м')
 
 
+lecturer_1 = Lecturer('Алена', 'Горшкова')
+lecturer_2 = Lecturer('Александр', 'Сапелкин')
 
 
+reviewer_1 = Reviewer('Ярослав', 'Козлов')
+reviewer_2 = Reviewer('Милана', 'Белоусова')
 
+reviewer_1.reviewer_rate(student_1, 'Программирование на Python', 8)
+reviewer_2.reviewer_rate(student_1, 'Программирование на Python', 7)
 
+print(student_1)
