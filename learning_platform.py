@@ -1,6 +1,8 @@
 class Student:
+    """Represents a student on learning platform with such attributes as name, surnmame, gender, etc."""
 
     def __init__(self, name, surname, gender):
+        """Initialize a Student instance with the given name, surname, and gender."""
         self.name = name
         self.surname = surname
         self.gender = gender
@@ -9,6 +11,7 @@ class Student:
         self.grades = {}
 
     def student_rate(self, lecturer, course, grade):
+        """Rate a student by a lecturer for a specific course with a given grade."""
         if (isinstance(lecturer, Lecturer)
                 and course in lecturer.courses_attached
                 and course in self.courses_in_progress
@@ -21,6 +24,7 @@ class Student:
             return 'Ошибка'
 
     def calculate_average_grade(self):
+        """Calculate the average grade for all courses the student is enrolled in."""
         all_grades = []
         for grades_list in self.grades.values():
             for grade in grades_list:
@@ -34,6 +38,7 @@ class Student:
         return average_grade
 
     def __str__(self):
+        """Return a string representation of the student, including name, surname, and average grade."""
         return (f'Имя: {self.name} \n'
                 f'Фамилия: {self.surname} \n'
                 f'Средняя оценка за домашние задания: {self.calculate_average_grade()} \n'
@@ -60,6 +65,7 @@ class Student:
 
 
 class Mentor:
+    """Represents a mentor with attributes such as name and surname."""
 
     def __init__(self, name, surname):
         self.name = name
@@ -68,13 +74,16 @@ class Mentor:
 
 
 class Lecturer(Mentor):
+    """Represents a lecturer, inheriting from Mentor, with additional attributes for courses and grades."""
 
     def __init__(self, name, surname):
+        """Initialize a Lecturer instance with the given name and surname."""
         super().__init__(name, surname)
         self.courses_attached = []
         self.grades = {}
 
     def calculate_average_grade(self):
+        """Calculate the average grade for all courses the lecturer is attached to."""
         all_grades = []
         for grades_list in self.grades.values():
             for grade in grades_list:
@@ -88,6 +97,7 @@ class Lecturer(Mentor):
         return average_grade
 
     def __str__(self):
+        """Return a string representation of the lecturer, including name, surname, and average grade."""
         return (f'Имя: {self.name} \n'
                 f'Фамилия: {self.surname} \n'
                 f'Средняя оценка за лекции: {self.calculate_average_grade()}')
@@ -112,8 +122,10 @@ class Lecturer(Mentor):
 
 
 class Reviewer(Mentor):
+    """Represents a reviewer, inheriting from Mentor, with additional method for reviewing students."""
 
     def reviewer_rate(self, student, course, grade):
+        """Rate a student for a specific course with a given grade."""
         if (isinstance(student, Student)
                 and course in self.courses_attached
                 and course in student.courses_in_progress):
@@ -125,11 +137,13 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
     def __str__(self):
+        """Return a string representation of the reviewer, including name and surname."""
         return (f'Имя: {self.name} \n'
                 f'Фамилия: {self.surname}')
 
 
 def hw_avg_total_grade(students, course):
+    """Calculate the average grade of homework for a specific course among a group of students."""
     total_grade = 0
     total_students = 0
 
@@ -147,6 +161,7 @@ def hw_avg_total_grade(students, course):
 
 
 def lecture_avg_total_grade(lecturers, course):
+    """Calculate the average grade for a specific course among a group of lecturers."""
     total_grade = 0
     total_lecturers = 0
 
@@ -207,7 +222,3 @@ print(lecturer_1 > lecturer_2, '\n')
 
 print(f'Средняя оценка среди студентов: {hw_avg_total_grade([student_1, student_2], "Программирование на Python")}')
 print(f'Средняя оцена за лекцию: {lecture_avg_total_grade([lecturer_1, lecturer_2], "Программирование на Python")}')
-
-
-
-
