@@ -141,6 +141,7 @@ lecturer_1 = Lecturer('Алена', 'Горшкова')
 lecturer_1.courses_attached = ['Программирование на Python']
 
 lecturer_2 = Lecturer('Александр', 'Сапелкин')
+lecturer_2.courses_attached = ['Программирование на Python']
 
 
 reviewer_1 = Reviewer('Ярослав', 'Козлов')
@@ -152,13 +153,20 @@ reviewer_2.courses_attached = ['Программирование на Python']
 
 student_1.student_rate(lecturer_1, 'Программирование на Python', 10)
 student_2.student_rate(lecturer_1, 'Программирование на Python', 9)
+student_1.student_rate(lecturer_2, 'Программирование на Python', 6)
+student_2.student_rate(lecturer_2, 'Программирование на Python', 7)
 
 reviewer_1.reviewer_rate(student_1, 'Программирование на Python', 8)
 reviewer_2.reviewer_rate(student_1, 'Программирование на Python', 7)
+reviewer_1.reviewer_rate(student_2, 'Программирование на Python', 6)
+reviewer_2.reviewer_rate(student_2, 'Программирование на Python', 10)
+
 
 print(student_1)
 print(lecturer_1)
 print(reviewer_1)
 
-print(lecturer_1.grades)
-print(student_1.grades)
+print(student_2)
+print(lecturer_2)
+
+print(student_1 < student_2)
