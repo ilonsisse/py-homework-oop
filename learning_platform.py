@@ -20,10 +20,23 @@ class Student:
         else:
             return 'Ошибка'
 
+    def calculate_average_grade(self):
+        all_grades = []
+        for grades_list in self.grades.values():
+            for grade in grades_list:
+                all_grades.append(grade)
+
+        if all_grades:
+            average_grade = sum(all_grades) / len(all_grades)
+        else:
+            average_grade = 0
+
+        return average_grade
+
     def __str__(self):
         return (f'Имя: {self.name} '
                 f'Фамилия: {self.surname} '
-                f'Средняя оценка за домашние задания: {sum(self.grades) / len(self.grades)} '
+                f'Средняя оценка за домашние задания:{self.calculate_average_grade()} '
                 f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)} '
                 f'Завершенные курсы: {", ".join(self.finished_courses)} ')
 
@@ -61,10 +74,23 @@ class Lecturer(Mentor):
         self.courses_attached = []
         self.grades = {}
 
+    def calculate_average_grade(self):
+        all_grades = []
+        for grades_list in self.grades.values():
+            for grade in grades_list:
+                all_grades.append(grade)
+
+        if all_grades:
+            average_grade = sum(all_grades) / len(all_grades)
+        else:
+            average_grade = 0
+
+        return average_grade
+
     def __str__(self):
         return (f'Имя: {self.name} '
                 f'Фамилия: {self.surname}'
-                f'Средняя оценка за лекции: {sum(self.grades) / len(self.grades)}')
+                f'Средняя оценка за лекции: {self.calculate_average_grade()}')
 
     def __lt__(self, other):
         return sum(self.grades) / len(self.grades) < sum(other.grades) / len(other.grades)
