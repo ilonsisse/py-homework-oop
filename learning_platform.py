@@ -34,11 +34,11 @@ class Student:
         return average_grade
 
     def __str__(self):
-        return (f'Имя: {self.name} '
-                f'Фамилия: {self.surname} '
-                f'Средняя оценка за домашние задания:{self.calculate_average_grade()} '
-                f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)} '
-                f'Завершенные курсы: {", ".join(self.finished_courses)} ')
+        return (f'Имя: {self.name} \n'
+                f'Фамилия: {self.surname} \n'
+                f'Средняя оценка за домашние задания:{self.calculate_average_grade()} \n'
+                f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)} \n'
+                f'Завершенные курсы: {", ".join(self.finished_courses)}')
 
     def __lt__(self, other):
         return sum(self.grades) / len(self.grades) < sum(other.grades) / len(other.grades)
@@ -88,8 +88,8 @@ class Lecturer(Mentor):
         return average_grade
 
     def __str__(self):
-        return (f'Имя: {self.name} '
-                f'Фамилия: {self.surname}'
+        return (f'Имя: {self.name} \n'
+                f'Фамилия: {self.surname} \n'
                 f'Средняя оценка за лекции: {self.calculate_average_grade()}')
 
     def __lt__(self, other):
@@ -125,22 +125,35 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
     def __str__(self):
-        return (f'Имя: {self.name}'
+        return (f'Имя: {self.name} \n'
                 f'Фамилия: {self.surname}')
 
 
 student_1 = Student('Евгений', 'Истомин', 'м')
+student_1.courses_in_progress = ['Программирование на Python']
+student_1.finished_courses = ['HTML']
+
 student_2 = Student('Иван', 'Иванов', 'м')
 
 
 lecturer_1 = Lecturer('Алена', 'Горшкова')
+lecturer_1.courses_attached = ['Программирование на Python']
+
 lecturer_2 = Lecturer('Александр', 'Сапелкин')
 
 
 reviewer_1 = Reviewer('Ярослав', 'Козлов')
+reviewer_1.courses_attached = ['Программирование на Python']
+
 reviewer_2 = Reviewer('Милана', 'Белоусова')
+
+
+student_1.student_rate(lecturer_1, 'Программирование на Python', 10)
+student_2.student_rate(lecturer_1, 'Программирование на Python', 9)
 
 reviewer_1.reviewer_rate(student_1, 'Программирование на Python', 8)
 reviewer_2.reviewer_rate(student_1, 'Программирование на Python', 7)
 
 print(student_1)
+print(lecturer_1)
+print(reviewer_1)
