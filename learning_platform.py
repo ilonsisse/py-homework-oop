@@ -10,7 +10,7 @@ class Student:
 
     def student_rate(self, lecturer, course, grade):
         if (isinstance(lecturer, Lecturer)
-                and self.courses_in_progress in lecturer.courses_attached
+                and course in lecturer.courses_attached
                 and course in self.courses_in_progress
                 and 0 <= grade <= 10):
             if course in lecturer.grades:
@@ -134,6 +134,7 @@ student_1.courses_in_progress = ['Программирование на Python']
 student_1.finished_courses = ['HTML']
 
 student_2 = Student('Иван', 'Иванов', 'м')
+student_2.courses_in_progress = ['Программирование на Python']
 
 
 lecturer_1 = Lecturer('Алена', 'Горшкова')
@@ -146,6 +147,7 @@ reviewer_1 = Reviewer('Ярослав', 'Козлов')
 reviewer_1.courses_attached = ['Программирование на Python']
 
 reviewer_2 = Reviewer('Милана', 'Белоусова')
+reviewer_2.courses_attached = ['Программирование на Python']
 
 
 student_1.student_rate(lecturer_1, 'Программирование на Python', 10)
@@ -157,3 +159,6 @@ reviewer_2.reviewer_rate(student_1, 'Программирование на Pytho
 print(student_1)
 print(lecturer_1)
 print(reviewer_1)
+
+print(lecturer_1.grades)
+print(student_1.grades)
