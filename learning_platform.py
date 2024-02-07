@@ -41,22 +41,22 @@ class Student:
                 f'Завершенные курсы: {", ".join(self.finished_courses)}')
 
     def __lt__(self, other):
-        return sum(self.grades) / len(self.grades) < sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() < other.calculate_average_grade()
 
     def __le__(self, other):
-        return sum(self.grades) / len(self.grades) <= sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() <= other.calculate_average_grade()
 
     def __eq__(self, other):
-        return sum(self.grades) / len(self.grades) == sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() == other.calculate_average_grade()
 
     def __ne__(self, other):
-        return sum(self.grades) / len(self.grades) != sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() != other.calculate_average_grade()
 
     def __gt__(self, other):
-        return sum(self.grades) / len(self.grades) > sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() > other.calculate_average_grade()
 
     def __ge__(self, other):
-        return sum(self.grades) / len(self.grades) >= sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() >= other.calculate_average_grade()
 
 
 class Mentor:
@@ -93,22 +93,22 @@ class Lecturer(Mentor):
                 f'Средняя оценка за лекции: {self.calculate_average_grade()}')
 
     def __lt__(self, other):
-        return sum(self.grades) / len(self.grades) < sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() < other.calculate_average_grade()
 
     def __le__(self, other):
-        return sum(self.grades) / len(self.grades) <= sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() <= other.calculate_average_grade()
 
     def __eq__(self, other):
-        return sum(self.grades) / len(self.grades) == sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() == other.calculate_average_grade()
 
     def __ne__(self, other):
-        return sum(self.grades) / len(self.grades) != sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() != other.calculate_average_grade()
 
     def __gt__(self, other):
-        return sum(self.grades) / len(self.grades) > sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() > other.calculate_average_grade()
 
     def __ge__(self, other):
-        return sum(self.grades) / len(self.grades) >= sum(other.grades) / len(other.grades)
+        return self.calculate_average_grade() >= other.calculate_average_grade()
 
 
 class Reviewer(Mentor):
@@ -166,7 +166,10 @@ print(student_1)
 print(lecturer_1)
 print(reviewer_1)
 
+
 print(student_2)
 print(lecturer_2)
 
-print(student_1 < student_2)
+
+print(student_1 > student_2)
+print(lecturer_1 > lecturer_2)
