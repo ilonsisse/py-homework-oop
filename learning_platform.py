@@ -36,7 +36,7 @@ class Student:
     def __str__(self):
         return (f'Имя: {self.name} \n'
                 f'Фамилия: {self.surname} \n'
-                f'Средняя оценка за домашние задания:{self.calculate_average_grade()} \n'
+                f'Средняя оценка за домашние задания: {self.calculate_average_grade()} \n'
                 f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)} \n'
                 f'Завершенные курсы: {", ".join(self.finished_courses)}')
 
@@ -129,6 +129,40 @@ class Reviewer(Mentor):
                 f'Фамилия: {self.surname}')
 
 
+def hw_avg_total_grade(students, course):
+    total_grade = 0
+    total_students = 0
+
+    for student in students:
+        if course in student.courses_in_progress and course in student.grades:
+            total_grade += sum(student.grades[course])
+            total_students += len(student.grades[course])
+
+    if total_students > 0:
+        average_grade = total_grade / total_students
+    else:
+        average_grade = 0
+
+    return average_grade
+
+
+def lecture_avg_total_grade(lecturers, course):
+    total_grade = 0
+    total_lecturers = 0
+
+    for lecturer in lecturers:
+        if course in lecturer.courses_attached and course in lecturer.grades:
+            total_grade += sum(lecturer.grades[course])
+            total_lecturers += len(lecturer.grades[course])
+
+    if total_lecturers > 0:
+        average_grade = total_grade / total_lecturers
+    else:
+        average_grade = 0
+
+    return average_grade
+
+
 student_1 = Student('Евгений', 'Истомин', 'м')
 student_1.courses_in_progress = ['Программирование на Python']
 student_1.finished_courses = ['HTML']
@@ -162,51 +196,13 @@ reviewer_1.reviewer_rate(student_2, 'Программирование на Pytho
 reviewer_2.reviewer_rate(student_2, 'Программирование на Python', 10)
 
 
-print(student_1)
-print(lecturer_1)
-print(reviewer_1)
-
-
-print(student_2)
-print(lecturer_2)
+print(student_1, '\n')
+print(lecturer_1, '\n')
+print(reviewer_1, '\n')
 
 
 print(student_1 > student_2)
-print(lecturer_1 > lecturer_2)
-
-
-def hw_avg_total_grade(students, course):
-    total_grade = 0
-    total_students = 0
-
-    for student in students:
-        if course in student.courses_in_progress and course in student.grades:
-            total_grade += sum(student.grades[course])
-            total_students += len(student.grades[course])
-
-    if total_students > 0:
-        average_grade = total_grade / total_students
-    else:
-        average_grade = 0
-
-    return average_grade
-
-
-def lecture_avg_total_grade(lecturers, course):
-    total_grade = 0
-    total_lecturers = 0
-
-    for lecturer in lecturers:
-        if course in lecturer.courses_attached and course in lecturer.grades:
-            total_grade += sum(lecturer.grades[course])
-            total_lecturers += len(lecturer.grades[course])
-
-    if total_lecturers > 0:
-        average_grade = total_grade / total_lecturers
-    else:
-        average_grade = 0
-
-    return average_grade
+print(lecturer_1 > lecturer_2, '\n')
 
 
 print(f'Средняя оценка среди студентов: {hw_avg_total_grade([student_1, student_2], "Программирование на Python")}')
