@@ -173,3 +173,45 @@ print(lecturer_2)
 
 print(student_1 > student_2)
 print(lecturer_1 > lecturer_2)
+
+
+def hw_avg_total_grade(students, course):
+    total_grade = 0
+    total_students = 0
+
+    for student in students:
+        if course in student.courses_in_progress and course in student.grades:
+            total_grade += sum(student.grades[course])
+            total_students += len(student.grades[course])
+
+    if total_students > 0:
+        average_grade = total_grade / total_students
+    else:
+        average_grade = 0
+
+    return average_grade
+
+
+def lecture_avg_total_grade(lecturers, course):
+    total_grade = 0
+    total_lecturers = 0
+
+    for lecturer in lecturers:
+        if course in lecturer.courses_attached and course in lecturer.grades:
+            total_grade += sum(lecturer.grades[course])
+            total_lecturers += len(lecturer.grades[course])
+
+    if total_lecturers > 0:
+        average_grade = total_grade / total_lecturers
+    else:
+        average_grade = 0
+
+    return average_grade
+
+
+print(f'Средняя оценка среди студентов: {hw_avg_total_grade([student_1, student_2], "Программирование на Python")}')
+print(f'Средняя оцена за лекцию: {lecture_avg_total_grade([lecturer_1, lecturer_2], "Программирование на Python")}')
+
+
+
+
